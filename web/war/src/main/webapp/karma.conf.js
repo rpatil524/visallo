@@ -66,7 +66,7 @@ module.exports = function(config) {
 
             // test results reporter to use
             // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-            reporters: ['mocha'],
+            reporters: ['mocha', 'saucelabs'],
 
             // web server port
             port: 9876,
@@ -89,14 +89,15 @@ module.exports = function(config) {
             // - Safari (only Mac)
             // - PhantomJS
             // - IE (only Windows)
-            browsers: ['PhantomJS'],
+            //browsers: ['PhantomJS', 'sl_chrome', 'sl_ie_11'],
+            browsers: ['sl_ie_11'],
 
             // If browser does not capture in given timeout [ms], kill it
             captureTimeout: 60000,
 
             // Continuous Integration mode
             // if true, it capture browsers, run tests and exit
-            singleRun: false,
+            singleRun: true,
 
             preprocessors: {
                 'js/**/*.jsx': ['babel'],
@@ -108,6 +109,23 @@ module.exports = function(config) {
                 },
                 filename: function(file) {
                     return file.originalPath.replace(/\.jsx$/, '.js');
+                }
+            },
+            sauceLabs: {
+                testName: 'Visallo Unit Tests'
+            },
+            customLaunchers: {
+                'sl_chrome': {
+                    base: 'SauceLabs',
+                    browserName: 'chrome',
+                    platform: 'Windows 7',
+                    version: '35'
+                },
+                'sl_ie_11': {
+                    base: 'SauceLabs',
+                    browserName: 'internet explorer',
+                    platform: 'Windows 8.1',
+                    version: '11'
                 }
             }
         },
@@ -135,7 +153,7 @@ module.exports = function(config) {
     try {
         require('karma-osx-reporter');
         karmaConfig.reporters.push('osx')
-    } catch (e) {
+    } catch(e) {
         console.log('npm install karma-osx-reporter for Notification Center support')
     }
 
