@@ -90,14 +90,16 @@ module.exports = function(config) {
             // - PhantomJS
             // - IE (only Windows)
             //browsers: ['PhantomJS', 'sl_chrome', 'sl_ie_11'],
-            browsers: ['sl_ie_11'],
+            browsers: ['PhantomJS', 'sl_chrome', 'sl_ie_11'],
+
+            browserNoActivityTimeout: 20000,
 
             // If browser does not capture in given timeout [ms], kill it
             captureTimeout: 60000,
 
             // Continuous Integration mode
             // if true, it capture browsers, run tests and exit
-            singleRun: true,
+            singleRun: false,
 
             preprocessors: {
                 'js/**/*.jsx': ['babel'],
