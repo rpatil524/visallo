@@ -156,6 +156,7 @@
         <node.version>v6.2.0</node.version>
         <npm.version>3.8.9</npm.version>
         <frontend.installDirectory>${settings.localRepository}/node/${node.version}</frontend.installDirectory>
+        <owasp-java-html-sanitizer.version>r239</owasp-java-html-sanitizer.version>
     </properties>
 
     <repositories>
@@ -518,6 +519,11 @@
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
                 <version>${json.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+                <artifactId>owasp-java-html-sanitizer</artifactId>
+                <version>${owasp-java-html-sanitizer.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>

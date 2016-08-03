@@ -20,12 +20,12 @@ define([
                 htmlSelector: this.onHtmlChange
             });
 
-            this.$node.html(template({ html: this.attr.item.configuration.html }));
+            this.$node.html(template({ html: this.attr.item.configuration.sanitizedHtml }));
         });
 
         this.onHtmlChange = function(event) {
             var html = $(event.target).val();
-            this.attr.item.configuration.html = html;
+            this.attr.item.configuration.sanitizedHtml = html;
             this.triggerChange();
         };
 

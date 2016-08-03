@@ -724,7 +724,7 @@ public class VertexiumWorkspaceRepository extends WorkspaceRepository {
     }
 
     @Override
-    public String addOrUpdateDashboardItem(
+    public String addOrUpdateDashboardItemSanitized(
             String workspaceId,
             String dashboardId,
             String dashboardItemId,

@@ -9,7 +9,7 @@ define([
 
     function HtmlDashboardItem() {
         this.after('initialize', function() {
-            var html = this.attr.item.configuration.html;
+            var html = this.attr.item.configuration.sanitizedHtml;
             this.$node.html(html);
         });
     }

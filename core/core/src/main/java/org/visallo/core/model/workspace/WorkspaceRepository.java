@@ -25,6 +25,7 @@ import org.visallo.core.security.VisalloVisibility;
 import org.visallo.core.security.VisibilityTranslator;
 import org.visallo.core.trace.Traced;
 import org.visallo.core.user.User;
+import org.visallo.core.util.HtmlSanitizer;
 import org.visallo.core.util.SandboxStatusUtil;
 import org.visallo.core.util.VisalloLogger;
 import org.visallo.core.util.VisalloLoggerFactory;
@@ -1003,7 +1004,32 @@ public abstract class WorkspaceRepository {
         return workQueueRepository;
     }
 
-    public abstract String addOrUpdateDashboardItem(
+    public String addOrUpdateDashboardItem(
+            String workspaceId,
+            String dashboardId,
+            String dashboardItemId,
+            String title,
+            String configuration,
+            String extensionId,
+            User user
+    ) {
+        if (configuration != null) {
+            JSONObject json = new JSONObject(configuration);
+            json = HtmlSanitizer.sanitizeJSONObject(json);
+            configuration = json.toString();
+        }
+        return addOrUpdateDashboardItemSanitized(
+                workspaceId,
+                dashboardId,
+                dashboardItemId,
+                title,
+                configuration,
+                extensionId,
+                user
+        );
+    }
+
+    protected abstract String addOrUpdateDashboardItemSanitized(
             String workspaceId,
             String dashboardId,
             String dashboardItemId,
