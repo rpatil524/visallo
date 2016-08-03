@@ -65,6 +65,7 @@
             'openlayers': '../libs/@visallo/openlayers2/build/OpenLayers',
             'pathfinding': '../libs/pathfinding/lib/pathfinding-browser.min',
             'propertyParser': '../libs/requirejs-plugins/src/propertyParser',
+            'quill': '../libs/quill/dist/quill',
             'rangy-core': '../libs/rangy/lib/rangy-core',
             'rangy-text': '../libs/rangy/lib/rangy-textrange',
             'rangy-highlighter': '../libs/rangy/lib/rangy-highlighter',

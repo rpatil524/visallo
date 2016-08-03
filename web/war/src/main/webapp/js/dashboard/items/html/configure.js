@@ -1,33 +1,37 @@
 define([
     'flight/lib/component',
     'util/withDataRequest',
-    'hbs!./configureTpl'
-], function(
-    defineComponent,
-    withDataRequest,
-    template) {
+    'hbs!./configureTpl',
+    'quill'
+], function(defineComponent,
+            withDataRequest,
+            template,
+            Quill) {
     'use strict';
 
     return defineComponent(HtmlDashboardItemConfiguration, withDataRequest);
 
     function HtmlDashboardItemConfiguration() {
-        this.defaultAttrs({
-            htmlSelector: 'textarea.html'
-        });
-
         this.after('initialize', function() {
-            this.on('change', {
-                htmlSelector: this.onHtmlChange
+            this.$node.html(template({html: this.attr.item.configuration.sanitizedHtml}));
+
+            var self = this;
+            var $editor = this.$node.find('.editor');
+            var $toolbar = this.$node.find('.toolbar');
+
+            this.quill = new Quill($editor.get(0), {
+                theme: 'snow'
             });
-
-            this.$node.html(template({ html: this.attr.item.configuration.sanitizedHtml }));
+            this.quill.addModule('toolbar', {container: $toolbar.get(0)});
+            this.quill.on('text-change', function (delta, source) {
+                var html = self.quill.getHTML();
+                if ($(html).text() === '') {
+                    html = '';
+                }
+                self.attr.item.configuration.sanitizedHtml = html;
+                self.triggerChange();
+            });
         });
-
-        this.onHtmlChange = function(event) {
-            var html = $(event.target).val();
-            this.attr.item.configuration.sanitizedHtml = html;
-            this.triggerChange();
-        };
 
         this.triggerChange = function() {
             this.trigger('configurationChanged', {
