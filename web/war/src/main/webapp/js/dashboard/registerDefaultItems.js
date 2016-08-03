@@ -25,6 +25,18 @@ define(['configuration/plugins/registry'], function(registry) {
     });
 
     registry.registerExtension('org.visallo.web.dashboard.item', {
+        title: 'Text',
+        description: 'Free form text',
+        identifier: 'org-visallo-web-dashboard-html',
+        componentPath: 'dashboard/items/html/html',
+        configurationPath: 'dashboard/items/html/configure',
+        grid: {
+            width: 3,
+            height: 3
+        }
+    });
+
+    registry.registerExtension('org.visallo.web.dashboard.item', {
         title: 'Entity Counts',
         description: 'Show total counts for entity types',
         identifier: 'org-visallo-web-dashboard-concept-counts',
@@ -89,4 +101,4 @@ define(['configuration/plugins/registry'], function(registry) {
             height: 4
         }
     });
-})
+});
