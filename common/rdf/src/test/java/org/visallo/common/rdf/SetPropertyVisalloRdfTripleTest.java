@@ -3,6 +3,7 @@ package org.visallo.common.rdf;
 import org.junit.Test;
 import org.vertexium.DateOnly;
 import org.vertexium.ElementType;
+import org.vertexium.property.StreamingPropertyValue;
 import org.vertexium.type.GeoPoint;
 import org.visallo.web.clientapi.model.DirectoryPerson;
 
@@ -98,5 +99,11 @@ public class SetPropertyVisalloRdfTripleTest extends VisalloRdfTripleTestBase {
         );
         String expectedString = "<v1[A]> <http://visallo.org#pname:pkey[B]> " + expected;
         assertEqualsVisalloRdfTriple(expectedString, triple, assertRoundTrip);
+    }
+
+    @Test
+    public void testStreamingPropertyValue() {
+        StreamingPropertyValue streamingPropertyValue = new StreamingPropertyValue();
+        testValue(streamingPropertyValue, "\"Unhandled value type org.vertexium.property.StreamingPropertyValue to convert to RDF string\"", false);
     }
 }
