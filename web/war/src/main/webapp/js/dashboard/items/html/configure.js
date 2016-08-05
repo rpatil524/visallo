@@ -45,19 +45,15 @@ define([
                 html = '';
             }
             this.attr.item.configuration.sanitizedHtml = html;
-            this.triggerChange();
+            this.trigger('configurationChanged', {
+                extension: this.attr.extension,
+                item: this.attr.item
+            });
             $('#edit-contents-modal').modal('hide');
         };
 
         this.onEditContents = function() {
             $('#edit-contents-modal').modal('show');
-        };
-
-        this.triggerChange = function() {
-            this.trigger('configurationChanged', {
-                extension: this.attr.extension,
-                item: this.attr.item
-            });
         };
     }
 });
