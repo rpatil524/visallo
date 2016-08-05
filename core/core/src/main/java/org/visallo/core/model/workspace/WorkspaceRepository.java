@@ -1014,9 +1014,7 @@ public abstract class WorkspaceRepository {
             User user
     ) {
         if (configuration != null) {
-            JSONObject json = new JSONObject(configuration);
-            json = HtmlSanitizer.sanitizeJSONObject(json);
-            configuration = json.toString();
+            configuration = HtmlSanitizer.sanitizeJSONString(configuration);
         }
         return addOrUpdateDashboardItemSanitized(
                 workspaceId,

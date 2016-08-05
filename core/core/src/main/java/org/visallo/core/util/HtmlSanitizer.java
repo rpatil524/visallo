@@ -6,7 +6,14 @@ import org.owasp.html.PolicyFactory;
 import org.owasp.html.Sanitizers;
 
 public class HtmlSanitizer {
+    private static final String SANITIZED_HTML_JSON_KEY = "sanitizedHtml";
     private static PolicyFactory sanitizer;
+
+    public static String sanitizeJSONString(String jsonString) {
+        JSONObject json = new JSONObject(jsonString);
+        json = HtmlSanitizer.sanitizeJSONObject(json);
+        return json.toString();
+    }
 
     /**
      * Looks for any string properties named "sanitizedHtml" and sanitizes them
@@ -15,7 +22,7 @@ public class HtmlSanitizer {
         for (Object keyObject : json.keySet()) {
             String key = (String) keyObject;
             Object value = json.opt(key);
-            if (key.equals("sanitizedHtml") && value instanceof String) {
+            if (key.equals(SANITIZED_HTML_JSON_KEY) && value instanceof String) {
                 json.put(key, sanitizeString((String) value));
             } else if (value instanceof JSONObject) {
                 json.put(key, sanitizeJSONObject((JSONObject) value));
