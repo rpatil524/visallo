@@ -1,7 +1,15 @@
-<section>
-    <label>Text</label>
-    <div class="rich-text quill-wrapper visallo-allow-focus" style="width: 750px;">
-        <div class="toolbar">
+<button class="edit-contents btn btn-link">Edit Contents</button>
+
+<div id="edit-contents-modal" class="edit-contents-modal modal fade" style="display: none; width: 1000px; margin-left: -470px;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">{{i18n 'dialog.html_dashboard_item.title'}}</h4>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="rich-text quill-wrapper visallo-allow-focus" style="width: 750px;">
+            <div class="toolbar">
             <span class="ql-format-group">
                 <select title="Font" class="ql-font">
                     <option value="sans-serif" selected>Sans Serif</option>
@@ -24,7 +32,7 @@
                 <span class="ql-format-separator"></span>
                 <span title="Strikethrough" class="ql-format-button ql-strike"></span>
             </span>
-            <span class="ql-format-group">
+                <span class="ql-format-group">
                 <select title="Text Color" class="ql-color">
                     <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)" selected></option>
                     <option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"></option>
@@ -113,7 +121,12 @@
                     <option value="justify" label="Justify"></option>
                 </select>
             </span>
+            </div>
+            <div class="editor">{{{html}}}</div>
         </div>
-        <div class="editor">{{{html}}}</div>
     </div>
-</section>
+    <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal">Close</button>
+        <button type="button" class="save btn btn-default">Save</button>
+    </div>
+</div>

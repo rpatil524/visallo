@@ -25,8 +25,8 @@ define(['configuration/plugins/registry'], function(registry) {
     });
 
     registry.registerExtension('org.visallo.web.dashboard.item', {
-        title: 'Text',
-        description: 'Free form text',
+        title: 'HTML',
+        description: 'HTML Content',
         identifier: 'org-visallo-web-dashboard-html',
         componentPath: 'dashboard/items/html/html',
         configurationPath: 'dashboard/items/html/configure',
