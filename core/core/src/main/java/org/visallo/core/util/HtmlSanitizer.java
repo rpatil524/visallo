@@ -10,6 +10,12 @@ public class HtmlSanitizer {
     private static PolicyFactory sanitizer;
 
     public static String sanitizeJSONString(String jsonString) {
+        if (jsonString == null) {
+            return null;
+        }
+        if (!jsonString.contains(SANITIZED_HTML_JSON_KEY)) {
+            return jsonString;
+        }
         JSONObject json = new JSONObject(jsonString);
         json = HtmlSanitizer.sanitizeJSONObject(json);
         return json.toString();
